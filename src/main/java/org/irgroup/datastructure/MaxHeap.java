@@ -128,7 +128,8 @@ public class MaxHeap<E extends Comparable<? super E>> {
 	}
 
 	public E remove() {     // Remove minimum value
-		assert n > 0 : "Removing from empty heap";
+		if(n == 0)
+			return null;
 
 		swap(0, --n); // Swap minimum with last value
 		if (n != 0)      // Not on last element
@@ -141,7 +142,8 @@ public class MaxHeap<E extends Comparable<? super E>> {
 	 * Remove element at specified position
 	 */
 	public E remove(int pos) {
-		assert (pos >= 0) && (pos < n) : "Illegal heap position";
+		if(pos < 0 || pos >= n)
+			return null;
 
 		if (pos == (n - 1))
 			n--; // Last element, no work to be done
