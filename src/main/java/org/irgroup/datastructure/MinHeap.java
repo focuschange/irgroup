@@ -15,6 +15,7 @@ import java.lang.Comparable;
  *
  * @Author : 이상호(focuschange@gmail.com)
  * @Date : 16. 8. 30.
+ * @modified : 16. 9. 5.
  * @Version : 1.0
  * @see : http://people.cs.vt.edu/shaffer/Book/JAVA/progs/Grkrusm/MinHeap.java
  */
@@ -49,7 +50,9 @@ public class MinHeap<E extends Comparable<? super E>> {
      * Return position for left child of pos
      */
     private int leftChild(int pos) {
-        assert pos < n / 2 : "Position has no left child";
+        if(pos >= (n / 2))
+            return -1; //Position has no left child
+
         return 2 * pos + 1;
     }
 
@@ -57,7 +60,9 @@ public class MinHeap<E extends Comparable<? super E>> {
      * Return position for right child of pos
      */
     private int rightChild(int pos) {
-        assert pos < (n - 1) / 2 : "Position has no right child";
+        if(pos >= ((n - 1) / 2))
+            return -1; // Position has no right child
+
         return 2 * pos + 2;
     }
 
@@ -87,7 +92,16 @@ public class MinHeap<E extends Comparable<? super E>> {
      * Insert into heap
      */
     public void insert(E val) {
-        assert n < size : "Heap is full";
+    	if(n == size)   // 가장 작은 것을 버림
+        {
+            if(Heap[0].compareTo(val) >= 0)
+                return;
+
+			remove();
+            insert(val);
+			return;
+        }
+
         int curr = n++;
         Heap[curr] = val;                 // Start at end of heap
 
@@ -156,10 +170,13 @@ public class MinHeap<E extends Comparable<? super E>> {
         for (int i = 0; i <= size / 2; i++) {
             System.out.print(" PARENT : " + Heap[i]);
 
-            if (Heap[2 * i] != null)
-                System.out.print(" LEFT CHILD : " + Heap[2 * i]);
-            if (Heap[2 * i + 1] != null)
-                System.out.print(" RIGHT CHILD :" + Heap[2 * i + 1]);
+            int left = i * 2 + 1;
+            int right = i * 2 + 2;
+
+            if(left < size && Heap[left] != null)
+                System.out.print(" LEFT CHILD : " + Heap[left]);
+            if(right < size && Heap[right] != null)
+                System.out.print(" RIGHT CHILD :" + Heap[right]);
             System.out.println();
         }
     }

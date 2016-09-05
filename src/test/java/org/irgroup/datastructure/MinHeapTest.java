@@ -3,12 +3,23 @@ package org.irgroup.datastructure;
 import java.lang.reflect.Array;
 
 /**
- * Created by focuschange on 2016. 8. 30..
+ * <pre>
+ *      org.irgroup.datastructure
+ *        |_ MinHeapTest.java
+ * </pre>
+ * <p>
+ * <pre>
+ *
+ * </pre>
+ *
+ * @Author : 이상호 (focuschange@gmail.com)
+ * @Date : 2016. 8. 30.
+ * @Version : 1.0
  */
 public class MinHeapTest {
-    int entryCount = 15;
+    int entryCount = 7;
     MinHeap heap;
-    MinHeapStringEntry[] entries = (MinHeapStringEntry[]) Array.newInstance(MinHeapStringEntry.class, entryCount + 1);
+    StringHeapEntry[] entries = (StringHeapEntry[]) Array.newInstance(StringHeapEntry.class, entryCount + 1);
 
     @org.junit.BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -33,22 +44,22 @@ public class MinHeapTest {
     @org.junit.Test
     public void all() throws Exception {
 
-        heap.insert(new MinHeapStringEntry("bbb"));
-        heap.insert(new MinHeapStringEntry("ddd"));
-        heap.insert(new MinHeapStringEntry("aaa"));
-        heap.insert(new MinHeapStringEntry("ccc"));
-        heap.insert(new MinHeapStringEntry("yyy"));
-        heap.insert(new MinHeapStringEntry("ttttt"));
-        heap.insert(new MinHeapStringEntry("xxxx"));
-        heap.insert(new MinHeapStringEntry("ooo"));
-        heap.insert(new MinHeapStringEntry("ooo"));
+        heap.insert(new StringHeapEntry("bbb"));
+        heap.insert(new StringHeapEntry("ddd"));
+        heap.insert(new StringHeapEntry("aaa"));
+        heap.insert(new StringHeapEntry("ccc"));
+        heap.insert(new StringHeapEntry("yyy"));
+        heap.insert(new StringHeapEntry("ttttt"));
+        heap.insert(new StringHeapEntry("xxxx"));
+        heap.insert(new StringHeapEntry("ooo"));
+        heap.insert(new StringHeapEntry("ooo"));
 
         heap.build();
         heap.print();
 
         System.out.println("list...");
         while (heap.count() > 0) {
-            MinHeapStringEntry e = (MinHeapStringEntry) heap.remove();
+            StringHeapEntry e = (StringHeapEntry) heap.remove();
             System.out.println(e);
         }
     }
